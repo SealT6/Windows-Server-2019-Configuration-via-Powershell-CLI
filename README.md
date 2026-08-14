@@ -1,107 +1,261 @@
-# 🖥️ Windows Server 2019 Configuration with PowerShell
+# 🖥️ Windows Server 2019 Administration & PowerShell
+
+![Windows Server](https://img.shields.io/badge/Windows%20Server-2019-blue)
+![PowerShell](https://img.shields.io/badge/PowerShell-Administration-blue)
+![IIS](https://img.shields.io/badge/IIS-Web%20Server-lightgrey)
+![Cybersecurity](https://img.shields.io/badge/Focus-Cybersecurity-red)
 
 ## 📌 Project Overview
 
-This project demonstrates hands-on **Windows Server administration and PowerShell-based system configuration** in a virtualized lab environment.
+This project demonstrates hands-on **Windows Server 2019 administration, PowerShell configuration, network management, and server role management** within a virtualized lab environment.
 
-The project focused on preparing a Windows Server system, inspecting and configuring network settings, renaming the computer, managing Windows Update behavior, restarting the server, and installing and removing the **Web Server (IIS)** role.
+The project focused on preparing and managing a Windows Server system through both PowerShell and Windows Server management tools. Tasks included network discovery, static IP configuration, server renaming, Windows Update configuration, system restart, IIS deployment, role validation, and IIS removal.
 
-The goal of this project was to develop practical experience with repeatable command-line administration while validating configuration changes through PowerShell output and Windows Server management tools.
-
-> **Portfolio Focus:** This project demonstrates the relationship between system administration, network configuration, automation, service management, and security-minded server administration.
+From a cybersecurity perspective, this project demonstrates foundational infrastructure concepts that support secure system administration, including **configuration management, patch management, attack-surface reduction, least functionality, and configuration validation**.
 
 ---
 
-## 🎯 Project Objectives
+# 🎯 Project Objectives
 
-- Inspect existing Windows network configuration using PowerShell
+The primary objectives of this project were to:
+
+- Analyze the server's existing network configuration
 - Configure a static IPv4 address
-- Configure the subnet prefix and default gateway
-- Rename the Windows Server computer
-- Modify Windows Update behavior
-- Restart the server to apply configuration changes
+- Configure the server's default gateway and network prefix
+- Rename the Windows Server system
+- Manage Windows Update behavior
+- Restart the server and validate configuration changes
 - Install the IIS Web Server role
-- Verify that IIS was successfully installed
-- Remove the IIS Web Server role
-- Validate and document configuration changes
+- Verify successful role installation
+- Remove unnecessary server functionality
+- Document configuration changes and validation results
 
 ---
 
-## 🏗️ Lab Environment
+# 🏗️ Lab Environment
 
-| Component | Configuration |
+| Component | Details |
 |---|---|
-| Operating System | Windows Server 2019 |
-| Administration | Microsoft PowerShell |
-| Environment | Virtualized Lab |
-| Web Server | IIS |
-| Primary Focus | Windows Server Configuration |
-| Networking | IPv4 / TCP-IP |
+| **Operating System** | Windows Server 2019 |
+| **Environment** | Virtualized Lab |
+| **Administration** | PowerShell / Server Manager |
+| **Web Server** | IIS |
+| **Networking** | IPv4 / TCP-IP |
+| **Primary Focus** | Windows Server Administration |
+| **Security Focus** | Configuration Management & Attack Surface Reduction |
 
 ---
 
-## 🧰 Tools & Technologies
+# 🧰 Technologies & Tools
 
-- **Windows Server 2019**
-- **Microsoft PowerShell**
-- **Server Manager**
-- **IIS (Internet Information Services)**
-- **Windows `sconfig` Utility**
-- **Windows Networking Cmdlets**
-- **Virtualization**
+### Operating System
+- Windows Server 2019
+
+### Administration
+- Microsoft PowerShell
+- Server Manager
+- Windows `sconfig`
+
+### Networking
+- IPv4
+- TCP/IP
+- IP configuration
+- Default gateway configuration
+
+### Server Roles
+- Internet Information Services (IIS)
+
+### Virtualization
+- Virtualized Windows Server lab environment
 
 ---
 
-# 🔧 Configuration Process
+# 🔧 Project Workflow
 
-## 1. Inspect Existing Network Configuration
+Network Discovery
+       │
+       ▼
+IP Configuration
+       │
+       ▼
+Static IP Assignment
+       │
+       ▼
+Server Renaming
+       │
+       ▼
+Windows Update Configuration
+       │
+       ▼
+System Restart
+       │
+       ▼
+IIS Installation
+       │
+       ▼
+IIS Validation
+       │
+       ▼
+IIS Removal
+       │
+       ▼
+Final Validation
 
-The first step was to collect information about the server's existing network configuration before making changes.
 
-The following PowerShell command was used:
+---
+
+# 1️⃣ Network Discovery
+
+Before making configuration changes, the existing network configuration was reviewed to establish a baseline.
+
+## Get-NetIPAddress
 
 ```powershell
 Get-NetIPAddress
-This command was used to identify existing IP addresses, interface indexes, address families, and prefix lengths.
-2. Review the Current IP Configuration
-The existing network configuration was reviewed using:
+```
+
+`Get-NetIPAddress` was used to identify existing IP addresses, interface indexes, address families, and prefix lengths.
+
+![Get-NetIPAddress](assets/01-get-netipaddress.jpg)
+
+### Why This Matters
+
+Establishing a configuration baseline before making changes helps administrators understand the existing system state and provides a reference for validating changes later.
+
+---
+
+# 2️⃣ Review Network Configuration
+
+The server's current network configuration was reviewed using:
+
+```powershell
 Get-NetIPConfiguration
-This provided information about the current IP configuration, network interface, and default gateway.
-3. Configure a Static IPv4 Address
-A static IPv4 configuration was assigned to the server using PowerShell.
+```
+
+This provided information about the server's network interface, IP configuration, and default gateway.
+
+![Get-NetIPConfiguration](assets/02-get-netipconfiguration.jpg)
+
+### Administrative Value
+
+PowerShell provides a fast way to collect network information without navigating through multiple graphical configuration menus.
+
+This approach also provides a foundation for automating system discovery and configuration.
+
+---
+
+# 3️⃣ Configure a Static IPv4 Address
+
+A static IPv4 configuration was assigned using PowerShell:
+
+powershell
 New-NetIPAddress -IPAddress 192.168.50.5 -InterfaceIndex 13 -PrefixLength 24 -DefaultGateway 192.168.50.2
-This command demonstrates how PowerShell can be used to configure:
-IPv4 address
-Network interface
-Prefix length
-Default gateway
-Note: The IP address and gateway shown above were used within the lab environment and should not be considered production network configuration.
-4. Rename the Windows Server
-The server computer name was changed using PowerShell rather than relying exclusively on the graphical interface.
+
+
+The command configured:
+
+| Parameter         | Purpose                          |
+| ----------------- | -------------------------------- |
+| `-IPAddress`      | Assigns the IPv4 address         |
+| `-InterfaceIndex` | Identifies the network interface |
+| `-PrefixLength`   | Defines the network prefix       |
+| `-DefaultGateway` | Defines the default gateway      |
+
+![Static IP Configuration](assets/03-static-ip-configuration.jpg)
+
+> **Lab Note:** The IP address and gateway documented above were used within the lab environment and should not be treated as production network settings.
+
+### 🔐 Security Relevance
+
+Understanding a server's network configuration is important when evaluating network exposure, firewall rules, routing, and communication with other systems.
+
+---
+
+# 4️⃣ Rename the Windows Server
+
+The server name was changed using PowerShell:
+
+```powershell
 Rename-Computer -NewName "NewPCName" -Force -PassThru
-The -PassThru parameter was used to return the resulting computer-name information for verification.
-5. Configure Windows Update
-The Windows Server sconfig utility was used to modify the Windows Update configuration.
-sconfig
+```
+
+The `-PassThru` parameter was used to return information about the resulting configuration.
+
+![Rename Computer](assets/04-rename-computer.jpg)
+
+### Why This Matters
+
+Consistent server naming is important for:
+
+* Asset identification
+* System administration
+* Monitoring
+* Logging
+* Troubleshooting
+* Security investigations
+
+Proper naming conventions become increasingly important as the number of managed systems grows.
+
+---
+
+# 5️⃣ Configure Windows Update
+
+The Windows Server `sconfig` utility was used to modify Windows Update behavior.
+
+powershell
+'sconfig'
+
 The update configuration was changed from automatic updates to manual updates within the lab environment.
-6. Verify Windows Update Configuration
-The resulting configuration was reviewed to verify that the update setting had been changed successfully.
-🔐 Security Consideration
-Manual update configuration can provide administrators with greater control over when updates are applied. However, delaying security updates can increase a system's exposure to known vulnerabilities.
-In a production environment, this type of configuration should be supported by:
-Centralized patch management
-Defined maintenance windows
-Patch compliance monitoring
-Vulnerability scanning
-Change management procedures
-7. Restart the Server
-The server was restarted after configuration changes were made.
+
+![SConfig Update Settings](assets/05-sconfig-update-settings.jpg)
+
+---
+
+# 6️⃣ Validate Windows Update Configuration
+
+The resulting configuration was reviewed to verify that the change was successfully applied.
+
+![Manual Update Confirmation](assets/06-manual-update-confirmation.jpg)
+
+## 🔐 Security Consideration
+
+Patch management is an important component of vulnerability management.
+
+While manual updates can provide administrators with greater control over maintenance timing, production environments require a reliable process for ensuring that critical security updates are not delayed.
+
+A production implementation should include:
+
+* Centralized patch management
+* Defined maintenance windows
+* Patch compliance monitoring
+* Vulnerability scanning
+* Change management
+* Security update prioritization
+
+---
+
+# 7️⃣ Restart the Server
+
+The server was restarted after configuration changes:
+
+```powershell
 Restart-Computer
-Restarting the system provided an opportunity to apply configuration changes and verify that the server could successfully return to an operational state.
-🌐 IIS Web Server Configuration
-8. Install the IIS Web Server Role
-The Internet Information Services (IIS) Web Server role was installed using Windows Server's Server Manager.
-The installation process followed:
+```
+
+![Restart Computer](assets/07-restart-computer.jpg)
+
+The restart provided an opportunity to verify that the server could successfully return to an operational state after configuration changes.
+
+---
+
+# 🌐 IIS Web Server Management
+
+## 8️⃣ Install IIS
+
+The **Internet Information Services (IIS)** Web Server role was installed using Windows Server's Server Manager.
+
+The installation workflow was:
+
 Server Manager
       ↓
 Manage
@@ -109,84 +263,169 @@ Manage
 Add Roles and Features
       ↓
 Web Server (IIS)
-Although this project primarily focused on PowerShell-based administration, the IIS installation demonstrates practical Windows Server role management.
-9. Verify IIS Installation
-After the IIS role was installed, the server configuration was reviewed to verify that the Web Server role was successfully added.
-This validation step demonstrates the importance of confirming that configuration changes produce the expected result.
-10. Remove the IIS Role
-The IIS Web Server role was subsequently removed from the server.
-The final verification confirmed that the IIS role was no longer installed.
-This completed the installation, validation, and removal lifecycle for the server role.
-✅ Validation Results
-Configuration / Test	Result
-Existing IP information collected	✅ Verified
-Existing IP configuration reviewed	✅ Verified
-Static IPv4 configuration	✅ Completed
-Computer rename	✅ Completed
-Windows Update configuration	✅ Completed
-Server restart	✅ Completed
-IIS installation	✅ Verified
-IIS removal	✅ Verified
-Final configuration documented	✅ Completed
-🛡️ Security Considerations
-Although this project primarily focused on Windows Server administration, several of the tasks directly relate to cybersecurity and secure infrastructure management.
-Network Configuration
-Properly configuring network interfaces and IP addressing is an important component of secure infrastructure management. Understanding the server's network configuration helps administrators identify how the system communicates with other hosts and services.
-Patch Management
-The project demonstrated changing Windows Update behavior. In a production environment, patching should be centrally managed and monitored to reduce the risk associated with missing security updates.
-Attack Surface Reduction
-The IIS installation and removal process demonstrates the principle of least functionality.
-If a server does not require a particular service or role, removing it can reduce the number of exposed services and potentially decrease the system's attack surface.
-Configuration Validation
-Configuration changes were followed by verification steps rather than assuming that the changes were successful.
-This is an important security and administration practice because configuration errors can create unexpected security risks.
-PowerShell Administration
-PowerShell provides administrators with a repeatable method for managing Windows systems.
-The commands used in this project could be expanded into automated configuration and security-hardening scripts.
-📊 Skills Demonstrated
-Windows Server Administration
-Windows Server 2019 configuration
-Network configuration
-IPv4 addressing
-Computer naming
-Windows Update management
-IIS role management
-System restart and validation
-PowerShell
+
+![IIS Role Installation](assets/08-iis-role-installation.jpg)
+
+### Why IIS?
+
+IIS is a common Windows Server role used to host web applications and services.
+
+Understanding how server roles are deployed and removed is useful for both system administration and cybersecurity because every enabled service can potentially increase a system's attack surface.
+
+---
+
+# 9️⃣ Validate IIS Installation
+
+After installation, the server configuration was reviewed to confirm that the IIS role had been successfully added.
+
+![IIS Role Verification](assets/09-iis-role-verification.jpg)
+
+### Validation Principle
+
+A configuration change should not be considered complete simply because a command or installation process finishes.
+
+The resulting system state should be verified.
+
+This project follows that approach by documenting the configuration and then validating the result.
+
+---
+
+# 🔟 Remove IIS
+
+The IIS Web Server role was subsequently removed.
+
+![IIS Role Removed](assets/10-iis-role-removed.jpg)
+
+The final verification confirmed that IIS was no longer installed.
+
+### 🔐 Security Relevance
+
+Removing unnecessary services and server roles follows the security principle of **least functionality**.
+
+If a service is not required, disabling or removing it can reduce:
+
+* Exposed services
+* Potential attack surface
+* Unnecessary software components
+* Administrative complexity
+
+---
+
+# ✅ Validation Results
+
+| Test / Configuration                 | Result      |
+| ------------------------------------ | ----------- |
+| Existing IP information collected    | ✅ Verified  |
+| Network configuration reviewed       | ✅ Verified  |
+| Static IPv4 configuration            | ✅ Completed |
+| Server renamed                       | ✅ Completed |
+| Windows Update configuration changed | ✅ Completed |
+| Server restarted                     | ✅ Completed |
+| IIS installed                        | ✅ Verified  |
+| IIS role validated                   | ✅ Verified  |
+| IIS removed                          | ✅ Verified  |
+| Final configuration documented       | ✅ Completed |
+
+---
+
+# 🛡️ Cybersecurity Relevance
+
+Although this project focused primarily on Windows Server administration, the tasks demonstrate several foundational cybersecurity concepts.
+
+## Attack Surface Reduction
+
+Installing and removing IIS demonstrated how unnecessary server functionality can be removed to reduce the attack surface.
+
+## Patch Management
+
+Windows Update configuration demonstrated the importance of maintaining a controlled patch-management process.
+
+## Configuration Management
+
+Network and system configuration changes were documented and validated instead of being performed without verification.
+
+## Least Functionality
+
+The IIS installation and removal lifecycle demonstrated that servers should only run the services and roles required for their intended purpose.
+
+## Infrastructure Security
+
+Understanding how servers are configured provides the foundation for more advanced security activities such as:
+
+* Vulnerability assessment
+* Security monitoring
+* Firewall configuration
+* System hardening
+* Incident response
+* Log analysis
+
+---
+
+# 📊 Technical Skills Demonstrated
+
+### Windows Server
+
+* Windows Server 2019 administration
+* Server role management
+* IIS administration
+* Network configuration
+* IPv4 addressing
+* Windows Update management
+* System restart and validation
+
+### PowerShell
+
 Get-NetIPAddress
 Get-NetIPConfiguration
 New-NetIPAddress
 Rename-Computer
 Restart-Computer
-Command-line system administration
-Cybersecurity Foundations
-Attack surface reduction
-Patch management
-Least functionality
-Configuration validation
-Secure infrastructure concepts
-System administration
-🧠 Lessons Learned
-This project reinforced the importance of understanding how Windows Server systems are configured and managed from the command line.
-PowerShell provides administrators with an efficient and repeatable way to gather system information and modify server settings. Using PowerShell for network configuration and system administration also provides a foundation for developing automated administrative and security scripts.
-The project also demonstrated that system administration and cybersecurity are closely connected. Network configuration, patch management, service installation, and removal of unnecessary server roles can all affect a system's overall security posture.
-A major takeaway from this project was the importance of making configuration changes intentionally and then validating that the changes were successfully applied.
-🚀 Future Improvements
-I plan to expand this project into a more security-focused Windows Server lab by implementing additional security controls and monitoring capabilities.
-Potential improvements include:
- Configure Windows Firewall rules
- Implement local security policies
- Configure user and group permissions
- Deploy Active Directory
- Create PowerShell security-auditing scripts
- Install and configure Sysmon
- Monitor Windows Event Logs
- Perform a Nessus vulnerability assessment
- Perform Nmap network validation
- Forward security logs to Splunk
- Develop automated PowerShell hardening scripts
- Perform before-and-after security validation
-📁 Project Structure
+
+### Security Concepts
+
+* Attack surface reduction
+* Least functionality
+* Patch management
+* Configuration validation
+* Secure infrastructure
+* System administration
+
+---
+
+# 🧠 Lessons Learned
+
+This project reinforced the importance of understanding the relationship between **system administration and cybersecurity**.
+
+PowerShell provides an efficient and repeatable method for managing Windows Server systems. The same command-line skills used to configure a server can also be expanded into automation, security auditing, system hardening, and incident-response workflows.
+
+The project also demonstrated that configuration changes should be **intentional, documented, and validated**.
+
+A secure server is not simply a server with security software installed. Security begins with understanding what the system is running, how it is configured, what services are exposed, and whether those services are actually required.
+
+---
+
+# 🚀 Future Security Enhancements
+
+The next stage of this project would be to transform the Windows Server environment into a more complete security lab.
+
+### Planned Improvements
+
+* [ ] Configure and harden Windows Firewall
+* [ ] Implement local security policies
+* [ ] Configure user and group permissions
+* [ ] Deploy Active Directory
+* [ ] Develop PowerShell security-auditing scripts
+* [ ] Install and configure Sysmon
+* [ ] Monitor Windows Event Logs
+* [ ] Perform a Nessus vulnerability assessment
+* [ ] Perform Nmap network validation
+* [ ] Forward Windows security logs to Splunk
+* [ ] Develop automated PowerShell hardening scripts
+* [ ] Perform before-and-after security validation
+
+---
+
+# 📁 Repository Structure
 Windows-Server-2019-Configuration-via-Powershell-CLI/
 │
 ├── README.md
@@ -202,42 +441,41 @@ Windows-Server-2019-Configuration-via-Powershell-CLI/
     ├── 08-iis-role-installation.jpg
     ├── 09-iis-role-verification.jpg
     └── 10-iis-role-removed.jpg
-🔄 Configuration Workflow
-Network Discovery
-       │
-       ▼
-IP Configuration Review
-       │
-       ▼
-Static IP Assignment
-       │
-       ▼
-Computer Renaming
-       │
-       ▼
-Windows Update Configuration
-       │
-       ▼
-Server Restart
-       │
-       ▼
-IIS Installation
-       │
-       ▼
-IIS Verification
-       │
-       ▼
-IIS Removal
-       │
-       ▼
-Final Validation
-📚 Project Takeaway
-This project provided hands-on experience with Windows Server configuration, PowerShell administration, network configuration, Windows Update management, and IIS role management.
-More importantly, it demonstrated how traditional system administration tasks can contribute to an organization's overall cybersecurity posture.
-The project serves as a foundation for future work involving Windows security, vulnerability management, security monitoring, PowerShell automation, and security engineering.
-👤 Author
-Sean Redding
-Cybersecurity | Security Operations | Vulnerability Management | Security Engineering
-GitHub: https://github.com/SealT6
-LinkedIn: https://www.linkedin.com/in/sean-redding-aa503a293/
 
+---
+
+# 📸 Project Evidence
+The evidence follows the project lifecycle:
+
+Baseline
+   ↓
+Configuration
+   ↓
+Validation
+   ↓
+Service Deployment
+   ↓
+Service Validation
+   ↓
+Service Removal
+   ↓
+Final State
+
+# 🎓 Project Takeaway
+
+This project provided practical experience with **Windows Server 2019, PowerShell, network configuration, Windows Update management, IIS, and server administration**.
+
+More importantly, it established a foundation for security-focused infrastructure work. Understanding how to configure and manage Windows systems is essential for roles involving **SOC operations, vulnerability management, system security, and security engineering**.
+
+The project can be further expanded into a full Windows security lab by adding vulnerability scanning, centralized logging, endpoint monitoring, firewall hardening, Active Directory, and PowerShell-based security automation.
+
+---
+
+## 👤 Author
+
+### Sean Redding
+
+**Cybersecurity | Security Operations | Vulnerability Management | Security Engineering**
+
+* 🌐 **GitHub:** [https://github.com/SealT6](https://github.com/SealT6)
+* 💼 **LinkedIn:** [https://www.linkedin.com/in/sean-redding-aa503a293/](https://www.linkedin.com/in/sean-redding-aa503a293/)
