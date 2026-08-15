@@ -116,7 +116,8 @@ Get-NetIPAddress
 
 `Get-NetIPAddress` was used to identify existing IP addresses, interface indexes, address families, and prefix lengths.
 
-![Get-NetIPAddress](assets/01-get-netipaddress.jpg)
+<img width="1247" height="806" alt="image" src="https://github.com/user-attachments/assets/e6ca280d-db65-4d3e-9f24-7ea9df5f0913" />
+
 
 ### Why This Matters
 
@@ -134,7 +135,8 @@ Get-NetIPConfiguration
 
 This provided information about the server's network interface, IP configuration, and default gateway.
 
-![Get-NetIPConfiguration](assets/02-get-netipconfiguration.jpg)
+<img width="1247" height="806" alt="image" src="https://github.com/user-attachments/assets/6bbc94a3-6b49-41bb-a5de-9447823d6339" />
+
 
 ### Administrative Value
 
@@ -161,7 +163,9 @@ The command configured:
 | `-PrefixLength`   | Defines the network prefix       |
 | `-DefaultGateway` | Defines the default gateway      |
 
-![Static IP Configuration](assets/03-static-ip-configuration.jpg)
+<img width="1247" height="806" alt="image" src="https://github.com/user-attachments/assets/adf94abb-43eb-4eb3-9e23-eb27c899b0c5" />
+
+
 
 > **Lab Note:** The IP address and gateway documented above were used within the lab environment and should not be treated as production network settings.
 
@@ -181,7 +185,9 @@ Rename-Computer -NewName "NewPCName" -Force -PassThru
 
 The `-PassThru` parameter was used to return information about the resulting configuration.
 
-![Rename Computer](assets/04-rename-computer.jpg)
+<img width="1247" height="806" alt="image" src="https://github.com/user-attachments/assets/49f3dd57-7c54-4c2c-b260-4e4dd16c90ce" />
+
+
 
 ### Why This Matters
 
@@ -207,7 +213,8 @@ powershell
 
 The update configuration was changed from automatic updates to manual updates within the lab environment.
 
-![SConfig Update Settings](assets/05-sconfig-update-settings.jpg)
+<img width="1247" height="806" alt="image" src="https://github.com/user-attachments/assets/24ec76d6-ca6b-472b-b5b2-bb31b0a0c629" />
+
 
 ---
 
@@ -215,7 +222,8 @@ The update configuration was changed from automatic updates to manual updates wi
 
 The resulting configuration was reviewed to verify that the change was successfully applied.
 
-![Manual Update Confirmation](assets/06-manual-update-confirmation.jpg)
+<img width="1247" height="806" alt="image" src="https://github.com/user-attachments/assets/aff695ce-865e-4ad4-b6e0-49219ccdba2e" />
+
 
 ## 🔐 Security Consideration
 
@@ -241,8 +249,9 @@ The server was restarted after configuration changes:
 ```powershell
 Restart-Computer
 ```
+<img width="1247" height="806" alt="image" src="https://github.com/user-attachments/assets/a7dfb5c7-42d2-4a02-8f1d-1d82105057eb" />
 
-![Restart Computer](assets/07-restart-computer.jpg)
+
 
 The restart provided an opportunity to verify that the server could successfully return to an operational state after configuration changes.
 
@@ -277,8 +286,11 @@ Understanding how server roles are deployed and removed is useful for both syste
 # 9️⃣ Validate IIS Installation
 
 After installation, the server configuration was reviewed to confirm that the IIS role had been successfully added.
+<img width="1247" height="806" alt="image" src="https://github.com/user-attachments/assets/934fa26d-d6e8-4f18-9a81-61ca2ceb0d87" />
 
-![IIS Role Verification](assets/09-iis-role-verification.jpg)
+<img width="1247" height="806" alt="image" src="https://github.com/user-attachments/assets/371b0693-d3c3-4717-aed5-1d872b3b33d6" />
+
+
 
 ### Validation Principle
 
@@ -288,15 +300,25 @@ The resulting system state should be verified.
 
 This project follows that approach by documenting the configuration and then validating the result.
 
+<img width="1247" height="806" alt="image" src="https://github.com/user-attachments/assets/9ec12a44-d80c-4b8a-b29f-65d1df0985d7" />
+
+
 ---
 
 # 🔟 Remove IIS
 
 The IIS Web Server role was subsequently removed.
 
-![IIS Role Removed](assets/10-iis-role-removed.jpg)
+<img width="1247" height="806" alt="image" src="https://github.com/user-attachments/assets/a720ac3d-b049-400d-9863-7b30fa4abfaa" />
+
+<img width="1247" height="806" alt="image" src="https://github.com/user-attachments/assets/41adedbd-1659-4cc2-96bb-a7d84d371206" />
+
+
 
 The final verification confirmed that IIS was no longer installed.
+
+<img width="1247" height="806" alt="image" src="https://github.com/user-attachments/assets/8ab20da1-bf74-4fbe-ade3-98041243c2be" />
+
 
 ### 🔐 Security Relevance
 
