@@ -227,9 +227,6 @@ The update configuration was changed from automatic updates to manual updates wi
 
 The resulting configuration was reviewed to verify that the change was successfully applied.
 
-<img width="1247" height="806" alt="image" src="https://github.com/user-attachments/assets/5a073f57-db22-415a-af94-ae95ca8ad2d6" />
-
-
 
 ## 🔐 Security Consideration
 
