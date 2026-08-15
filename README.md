@@ -217,7 +217,8 @@ powershell
 
 The update configuration was changed from automatic updates to manual updates within the lab environment.
 
-<img width="1247" height="806" alt="image" src="https://github.com/user-attachments/assets/24ec76d6-ca6b-472b-b5b2-bb31b0a0c629" />
+<img width="1247" height="806" alt="image" src="https://github.com/user-attachments/assets/704c1d61-d91d-4194-8427-e4dc156d68b6" />
+
 
 
 ---
