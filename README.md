@@ -293,8 +293,8 @@ Understanding how server roles are deployed and removed is useful for both syste
 # 9️⃣ Validate IIS Installation
 
 After installation, the server configuration was reviewed to confirm that the IIS role had been successfully added.
-<img width="1247" height="806" alt="image" src="https://github.com/user-attachments/assets/7a3258c2-a07a-47fe-bf0f-71ebe007d623" />
 
+<img width="1247" height="806" alt="image" src="https://github.com/user-attachments/assets/9ec12a44-d80c-4b8a-b29f-65d1df0985d7" />
 
 
 ### Validation Principle
@@ -304,8 +304,6 @@ A configuration change should not be considered complete simply because a comman
 The resulting system state should be verified.
 
 This project follows that approach by documenting the configuration and then validating the result.
-
-<img width="1247" height="806" alt="image" src="https://github.com/user-attachments/assets/9ec12a44-d80c-4b8a-b29f-65d1df0985d7" />
 
 
 ---
